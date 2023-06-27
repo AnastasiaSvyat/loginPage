@@ -1,0 +1,11 @@
+.container {
+    medev-card-simple {
+        border: 1px solid rgb(3, 162, 72);
+        border-radius: 5px;
+    }
+
+    .form-check-input:checked {
+        background-color: rgb(3, 162, 72);
+        border-color: rgb(3, 162, 72);
+    }
+}

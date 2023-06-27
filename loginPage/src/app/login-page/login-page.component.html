@@ -1,0 +1,93 @@
+<div class="container w-100 h-100 d-flex align-items-center justify-content-center">
+    <medev-card-simple class="w-50">
+
+        <ng-template #card_title>
+            Login
+        </ng-template>
+
+        <form [formGroup]="loginForm" class="column">
+
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" formControlName="name" class="form-control" placeholder="Name" required
+                    [ngClass]="{ 'is-invalid': name?.touched && name?.errors, 'is-valid': name?.valid }">
+                <div *ngIf="name?.touched && name?.errors" class="invalid-feedback">
+                    <div *ngIf="name?.errors?.['required']">Name is required!</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Last name:</label>
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Last name" required
+                    [ngClass]="{ 'is-invalid': lastName?.touched && lastName?.errors, 'is-valid': lastName?.valid }">
+                <div *ngIf="lastName?.touched && lastName?.errors" class="invalid-feedback">
+                    <div *ngIf="lastName?.errors?.['required']">Last name is required!</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="Email" required
+                    [ngClass]="{ 'is-invalid': email?.touched && email?.errors, 'is-valid': email?.valid }">
+
+                <div *ngIf="email?.touched && email?.errors" class="invalid-feedback">
+                    <div *ngIf="email?.errors?.['required']">Email is required!</div>
+                    <div *ngIf="email?.errors?.['email']">Enter correct email!</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password" required
+                    [ngClass]="{ 'is-invalid': password?.touched && password?.errors, 'is-valid': password?.valid }" />
+
+                <div class="invalid-feedback">
+                    <div *ngIf="password?.errors?.['required']">Password is required!</div>
+                    <div *ngIf="!password?.errors?.['required']">
+                        <div *ngIf="password?.errors?.['minlength']">
+                            Must be at least 8 characters long
+                        </div>
+                        <div *ngIf="password?.errors?.['pattern']">
+                            Must contain at least 1 uppercase character
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Confirm password:</label>
+                <input type="password" formControlName="confirmPassword" class="form-control"
+                    placeholder="Confirm password" required
+                    [ngClass]="{ 'is-invalid': confirmPassword?.touched && confirmPassword?.errors, 'is-valid': confirmPassword?.valid }" />
+                <div class="invalid-feedback">
+                    <div *ngIf="confirmPassword?.errors?.['required']">Password is required!</div>
+                    <div *ngIf="!confirmPassword?.errors?.['required']">
+                        <div *ngIf="confirmPassword?.errors?.['minLength']">
+                            Must be at least 8 characters long
+                        </div>
+                        <div *ngIf="confirmPassword?.errors?.['pattern']">
+                            Must contain at least 1 uppercase character
+                        </div>
+                        <div *ngIf="confirmPassword?.hasError('mismatch')">
+                            Passwords do not match
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input formControlName="isAgree" class="form-check-input" type="checkbox" required>
+                    <label class="form-check-label">
+                        Agree to terms and conditions
+                    </label>
+                </div>
+            </div>
+
+            <button [disabled]="loginForm.invalid" type="button" class="btn btn-success m-t-20"
+                (click)="onSubmit(loginForm.value)">
+                Login
+            </button>
+        </form>
+    </medev-card-simple>
+</div>
