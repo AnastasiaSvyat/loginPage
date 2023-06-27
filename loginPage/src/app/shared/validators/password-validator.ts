@@ -1,7 +1,7 @@
 import { ValidatorFn, FormGroup } from '@angular/forms';
 
 export function MatchValidator(): ValidatorFn | any {
-    return (form: FormGroup, regex: RegExp): { [key: string]: boolean } | any => {
+    return (form: FormGroup): { [key: string]: boolean } | any => {
         const password: string = form.get("password")?.value;
         const confirmPassword: string = form.get("confirmPassword")?.value;
         if (!confirmPassword?.length) {
